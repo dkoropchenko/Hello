@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -19,7 +20,7 @@ public abstract class ORAExecutor {
 	
 	protected abstract void getResult(ResultSet result) throws SQLException;
 	
-	protected void execute(String sql, String[] params) {
+	protected void execute(String sql, Map<Integer,Object> params) {
 		Connection conn = getConnect();
 		PreparedStatement stmn = null;
 		ResultSet rs = null;
@@ -27,10 +28,12 @@ public abstract class ORAExecutor {
 		    // Disable auto commit
 		    conn.setAutoCommit(false);
 		    stmn = conn.prepareStatement(sql);
+		    int i = 1;
 		    if (params != null) {
-			    for (int i = 0; i < params.length; i++) {
-			    	log.info("Add param: " + params[i]);
-			    	stmn.setString(i + 1, params[i]);
+		    	for (Map.Entry<Integer,Object> entry: params.entrySet()){
+			    	log.info("Add param: " + entry.getKey() + ",  " + entry.getValue());
+			    	stmn.setObject(i, entry.getValue(), entry.getKey());
+			    	i++;
 			    }
 		    }
 		    else {

@@ -1,6 +1,6 @@
 package com.dkoropchenko.hello.model.action;
 
-import java.util.Map;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 import com.dkoropchenko.hello.model.dao.DAOFactory;
+import com.dkoropchenko.hello.model.obj.HelloObj;
 
 public class AddAction implements Action {
 
@@ -18,29 +19,17 @@ public class AddAction implements Action {
 	public String perform(HttpServletRequest request,
 			HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		Map<String, String> map = (Map<String, String>) session.getAttribute("test");
+		List<HelloObj> map = (List<HelloObj>) session.getAttribute("test");
 		String content = request.getParameter("content");
+		int parent_id = Integer.valueOf(request.getParameter("parent"));
 		DAOFactory dao = DAOFactory.getDAOFactory(DAOFactory.ORA);
 		
 		if (content != null) {
-			map = dao.getContent().addNew(generateId(map), content);
+			map = dao.getContent().addNew(content, parent_id);
 		}
 		
  		request.getSession().setAttribute("test", map);
  		log.info("add action");
  		return "/Hello.jsp";
 	}
-	
-	@SuppressWarnings("rawtypes")
-	private String generateId(Map map) {
-		String id = "test" + map.size();
-		for (int i = map.size() + 1;;i++)
-		if (map.containsKey(id)) {
-			id = "test" + i;
-		}
-		else {
-			return id;
-		}
-	}
-
 }

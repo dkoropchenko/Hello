@@ -1,11 +1,14 @@
 package com.dkoropchenko.hello.model.dao;
 
-import java.util.Map;
+import java.util.List;
+
+import com.dkoropchenko.hello.model.obj.HelloObj;
 
 public interface Content {
 
-	Map<String,String> getData();
-	Map<String,String> addNew(String id, String content);
-	Map<String,String> edit(String id, String content);
-	Map<String,String> delete(String id);
+	List<HelloObj> getData();
+	List<HelloObj> addNew(String content, int parent_id);
+	List<HelloObj> editName(int id, String content);
+	List<HelloObj> editParent(int id, int content);
+	List<HelloObj> delete(int id);
 }

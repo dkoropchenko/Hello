@@ -1,6 +1,6 @@
 package com.dkoropchenko.hello.model.action;
 
-import java.util.Map;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,12 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import com.dkoropchenko.hello.model.dao.DAOFactory;
+import com.dkoropchenko.hello.model.obj.HelloObj;
 
 public class IndexAction implements Action {
 
 	private static Logger log = Logger.getLogger(IndexAction.class);
 	
-	private Map<String, String> map;
+	private List<HelloObj> map;
 	
 	public String perform(HttpServletRequest request,
 			HttpServletResponse response) {

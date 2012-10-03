@@ -11,6 +11,7 @@
 Add new content. Type content:
 <input type="hidden" name="action" value="add" >
 <input type="text" name="content" value="content">
+<input type="text" name="parent" value="5" >
 <input type="submit" value="Add">
 </form>
 <a href="hello">Home</a>
