@@ -5,5 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface Action {
 	
-	public String perform(HttpServletRequest request, HttpServletResponse response);
+	String OBJECTS = "objects";
+	String PARENT_LINK = "parent_link";
+	
+	String perform(HttpServletRequest request, HttpServletResponse response);
 }

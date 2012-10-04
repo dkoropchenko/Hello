@@ -10,10 +10,10 @@
 <form action="hello">
 Add new content. Type content:
 <input type="hidden" name="action" value="add" >
+<input type="hidden" name="parent" value=<%=request.getParameter("parent") %> >
 <input type="text" name="content" value="content">
-<input type="text" name="parent" value="5" >
 <input type="submit" value="Add">
 </form>
-<a href="hello">Home</a>
+<a href="hello?action=child&parent_id=<%=request.getParameter("parent") %>">Cancel</a>
 </body>
 </html>

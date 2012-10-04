@@ -19,7 +19,7 @@ public class AddAction implements Action {
 	public String perform(HttpServletRequest request,
 			HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		List<HelloObj> map = (List<HelloObj>) session.getAttribute("test");
+		List<HelloObj> map = (List<HelloObj>) session.getAttribute(OBJECTS);
 		String content = request.getParameter("content");
 		int parent_id = Integer.valueOf(request.getParameter("parent"));
 		DAOFactory dao = DAOFactory.getDAOFactory(DAOFactory.ORA);
@@ -28,7 +28,8 @@ public class AddAction implements Action {
 			map = dao.getContent().addNew(content, parent_id);
 		}
 		
- 		request.getSession().setAttribute("test", map);
+ 		request.getSession().setAttribute(OBJECTS, map);
+ 		request.getSession().setAttribute(PARENT_LINK, dao.getContent().getParentLink(parent_id));
  		log.info("add action");
  		return "/Hello.jsp";
 	}

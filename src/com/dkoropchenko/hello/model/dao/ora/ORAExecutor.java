@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -14,13 +16,15 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 
+import com.dkoropchenko.hello.model.obj.HelloObj;
+
 public abstract class ORAExecutor {
 	
 	protected static Logger log = Logger.getLogger(ORAExecutor.class); 
 	
-	protected abstract void getResult(ResultSet result) throws SQLException;
+	protected abstract List<HelloObj> getResult(ResultSet result) throws SQLException;
 	
-	protected void execute(String sql, Map<Integer,Object> params) {
+	protected List<HelloObj> execute(String sql, Map<Integer,Object> params) {
 		Connection conn = getConnect();
 		PreparedStatement stmn = null;
 		ResultSet rs = null;
@@ -42,8 +46,9 @@ public abstract class ORAExecutor {
 		    // Do SQL updates...
 			log.info("Is executed sql: " + stmn.executeUpdate());
 			rs = stmn.getResultSet();
-			getResult(rs);
+			List<HelloObj> tmp = getResult(rs);
 			conn.commit();
+			return tmp;
 		}
 		catch (NullPointerException e) {
 			log.error("Cannot establish connection", e);
@@ -78,6 +83,7 @@ public abstract class ORAExecutor {
 				log.error("Error during closing connection", ex);
 			}
 		}
+		return new ArrayList<HelloObj>();
 	}
 	
 	private Connection getConnect() {

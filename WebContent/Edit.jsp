@@ -14,6 +14,6 @@ Edit content. Type content:
 <input type="text" name="content" value=<%= request.getParameter("content") %>>
 <input type="submit" value="Edit">
 </form>
-<a href="hello">Home</a>
+<a href="hello?action=child&parent_id=<%=request.getParameter("parent") %>">Cancel</a>
 </body>
 </html>

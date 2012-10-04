@@ -36,7 +36,7 @@ public class ActionFactory {
 		map.put("add", AddAction.class);
 		map.put("delete", DeleteAction.class);
 		map.put("edit", EditAction.class);
-		//map.put("removeContactAction", RemoveContactAction.class);
+		map.put("child", ChildAction.class);
 		//map.put("loginAction", LoginAction.class);
 		//map.put("logoutAction", LogoutAction.class);
 

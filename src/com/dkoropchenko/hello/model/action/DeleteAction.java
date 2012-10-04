@@ -19,13 +19,15 @@ public class DeleteAction implements Action {
 	public String perform(HttpServletRequest request,
 			HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		List<HelloObj> map = (List<HelloObj>) session.getAttribute("test");
+		List<HelloObj> map = (List<HelloObj>) session.getAttribute(OBJECTS);
 		int id = Integer.valueOf(request.getParameter("id"));
+		int parent_id = Integer.valueOf(request.getParameter("parent"));
 		DAOFactory dao = DAOFactory.getDAOFactory(DAOFactory.ORA);
 		
 		map = dao.getContent().delete(id);
  		
-		request.getSession().setAttribute("test", map);
+		request.getSession().setAttribute(OBJECTS, map);
+		request.getSession().setAttribute(PARENT_LINK, dao.getContent().getParentLink(parent_id));
  		log.info("delete action");
  		return "/Hello.jsp";
 	}
