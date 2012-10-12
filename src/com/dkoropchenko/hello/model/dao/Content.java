@@ -2,7 +2,7 @@ package com.dkoropchenko.hello.model.dao;
 
 import java.util.List;
 
-import com.dkoropchenko.hello.model.obj.HelloObj;
+import com.dkoropchenko.hello.model.hobj.HelloObj;
 
 public interface Content {
 

@@ -11,7 +11,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import com.dkoropchenko.hello.model.dao.Content;
-import com.dkoropchenko.hello.model.obj.HelloObj;
+import com.dkoropchenko.hello.model.hobj.HelloObj;
 
 public class OraContent extends ORAExecutor implements Content {
 	

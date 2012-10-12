@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 
-import com.dkoropchenko.hello.model.obj.HelloObj;
+import com.dkoropchenko.hello.model.hobj.HelloObj;
 
 public abstract class ORAExecutor {
 	
