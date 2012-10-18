@@ -1,9 +1,9 @@
-package com.dkoropchenko.hello.model;
+package com.dkoropchenko.hello.ctrl;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.dkoropchenko.hello.model.action.*;
+import com.dkoropchenko.hello.ctrl.action.*;
 
 public class ActionFactory {
 
@@ -22,12 +22,15 @@ public class ActionFactory {
 		Action actionInstance = null;
 		try {
 			actionInstance = (Action) klass.newInstance();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			throw new RuntimeException(getClass() + " was unable to access to an action named '" + actionName + "'.");
+		} catch (InstantiationException e) {
+			throw new RuntimeException(getClass() + " was unable to instantiate an action named '" + actionName + "'.");
 		}
 
 		return actionInstance;
 	}
+	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	protected Map defaultMap() {
 		Map map = new HashMap();
@@ -37,8 +40,6 @@ public class ActionFactory {
 		map.put("delete", DeleteAction.class);
 		map.put("edit", EditAction.class);
 		map.put("child", ChildAction.class);
-		//map.put("loginAction", LoginAction.class);
-		//map.put("logoutAction", LogoutAction.class);
 
 		return map;
 	}

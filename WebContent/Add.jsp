@@ -14,6 +14,6 @@ Add new content. Type content:
 <input type="text" name="content" value="content">
 <input type="submit" value="Add">
 </form>
-<a href="hello?action=child&parent_id=<%=request.getParameter("parent") %>">Cancel</a>
+<a href=<%= request.getHeader("Referer") %>>Cancel</a>
 </body>
 </html>

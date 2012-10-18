@@ -1,4 +1,4 @@
-package com.dkoropchenko.hello.model;
+package com.dkoropchenko.hello.ctrl;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import com.dkoropchenko.hello.model.action.Action;
+import com.dkoropchenko.hello.ctrl.action.Action;
 
 
 public class HelloWorldServlet extends HttpServlet {
@@ -35,11 +35,17 @@ public class HelloWorldServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String act = getActionName(request);
 		log.info("action: " + act);
-		Action action = factory.create(act);
-		String url = action.perform(request, response);
-		log.info("service");
-		if (url != null)
-			getServletContext().getRequestDispatcher(url).forward(request, response);
+		try {
+			Action action = factory.create(act);
+			String url = action.perform(request, response);
+			log.info("service");
+			if (url != null)
+				getServletContext().getRequestDispatcher(url).forward(request, response);
+		}
+		catch (Exception e) {
+			request.setAttribute("error", e);
+			getServletContext().getRequestDispatcher("/Error.jsp").forward(request, response);
+		}
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 

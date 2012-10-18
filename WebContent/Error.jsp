@@ -4,16 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Edit content</title>
+<title>Insert title here</title>
 </head>
 <body>
-<form action="hello">
-Edit content. Type content:
-<input type="hidden" name="action" value="edit" >
-<input type="hidden" name="id" value=<%= request.getParameter("id") %>>
-<input type="text" name="content" value=<%= request.getParameter("content") %>>
-<input type="submit" value="Edit">
-</form>
+<% 	Exception error = (Exception) request.getAttribute("error"); %>
+<p><b><%= (error != null) ? error.getMessage() : "Some error occured."%></b><p>
 <a href=<%=request.getHeader("Referer")%>>Cancel</a>
+<div style="visibility: hidden"><%=error.getStackTrace() %></div>
 </body>
 </html>

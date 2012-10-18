@@ -1,4 +1,4 @@
-package com.dkoropchenko.hello.model.dao.ora;
+package com.dkoropchenko.hello.ctrl.dao.ora;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 
-import com.dkoropchenko.hello.model.hobj.HelloObj;
+import com.dkoropchenko.hello.model.HelloObj;
 
 public abstract class ORAExecutor {
 	

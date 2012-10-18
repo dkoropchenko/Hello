@@ -1,8 +1,8 @@
-package com.dkoropchenko.hello.model.dao;
+package com.dkoropchenko.hello.ctrl.dao;
 
 import java.util.List;
 
-import com.dkoropchenko.hello.model.hobj.HelloObj;
+import com.dkoropchenko.hello.model.HelloObj;
 
 public interface Content {
 

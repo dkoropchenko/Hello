@@ -1,6 +1,6 @@
-package com.dkoropchenko.hello.model.dao;
+package com.dkoropchenko.hello.ctrl.dao;
 
-import com.dkoropchenko.hello.model.dao.ora.OraDAOFactory;
+import com.dkoropchenko.hello.ctrl.dao.ora.OraDAOFactory;
 
 public abstract class DAOFactory {
 

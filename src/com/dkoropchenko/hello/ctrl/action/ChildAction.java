@@ -1,4 +1,4 @@
-package com.dkoropchenko.hello.model.action;
+package com.dkoropchenko.hello.ctrl.action;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import com.dkoropchenko.hello.model.dao.DAOFactory;
-import com.dkoropchenko.hello.model.hobj.HelloObj;
+import com.dkoropchenko.hello.ctrl.dao.DAOFactory;
+import com.dkoropchenko.hello.model.HelloObj;
 
 public class ChildAction implements Action {
 

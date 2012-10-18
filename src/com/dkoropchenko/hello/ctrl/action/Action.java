@@ -1,4 +1,4 @@
-package com.dkoropchenko.hello.model.action;
+package com.dkoropchenko.hello.ctrl.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -1,4 +1,4 @@
-package com.dkoropchenko.hello.model.dao.ora;
+package com.dkoropchenko.hello.ctrl.dao.ora;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,8 +10,9 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import com.dkoropchenko.hello.model.dao.Content;
-import com.dkoropchenko.hello.model.hobj.HelloObj;
+import com.dkoropchenko.hello.ctrl.dao.Content;
+import com.dkoropchenko.hello.model.HelloObj;
+import com.dkoropchenko.hello.model.except.InvalidHelloObj;
 
 public class OraContent extends ORAExecutor implements Content {
 	
@@ -103,9 +104,14 @@ public class OraContent extends ORAExecutor implements Content {
 		List<HelloObj> tmp = new ArrayList<HelloObj>();
 		if (result == null) return tmp;
 		while (result.next()) {
-			tmp.add(new HelloObj(result.getInt(SQL_ID_ITEMS), 
-								 result.getString(SQL_NAME_ITEMS), 
-								 result.getInt(SQL_ID_PARENT)));
+			try {
+				tmp.add(new HelloObj(result.getInt(SQL_ID_ITEMS), 
+									 result.getString(SQL_NAME_ITEMS), 
+									 result.getInt(SQL_ID_PARENT)));
+			}
+			catch (InvalidHelloObj e) {
+				
+			}
 		}
 		log.info("List: " + tmp);
 		return tmp;
