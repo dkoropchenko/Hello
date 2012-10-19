@@ -15,8 +15,12 @@ public class HelloType {
 	private Map<String,Attribute> attrsTypes;
 	
 	public HelloType(String name) {
+		this(name, new HashMap<String,Attribute>());
+	}
+	
+	public HelloType(String name, Map<String,Attribute> attrsTypes) {
 		this.name = name;
-		this.attrsTypes = new HashMap<String,Attribute>();
+		this.attrsTypes = attrsTypes;
 	}
 	
 	public void addAttr(Attribute atr) throws AttrAlreadyExist {
